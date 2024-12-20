@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Board</title>
+</head>
+<body>
+<h1>게시판</h1>
+
+<div th:if="${!isLoggedIn}">
+    <a href="/login">
+        <button>로그인</button>
+    </a>
+</div>
+
+<div th:if="${isLoggedIn}">
+    <a href="/logout">
+        <button>로그아웃</button>
+    </a>
+</div>
+
+<div class="card" th:each="i : ${boards}">
+    <img src="https://placehold.co/300">
+    <h4>
+        <a th:href="@{/board/detail(id=${i.id})}" th:text="${i.title}">Title</a>
+    </h4>
+    <p th:text="${i.date}">Date</p>
+    <p th:text="${i.content}">Content</p>
+    <form action="/board/edit" method="GET" style="display: inline;">
+        <input type="hidden" name="id" th:value="${i.id}">
+        <button type="submit">수정</button>
+    </form>
+    <form action="/board/delete" method="POST" style="display: inline;">
+        <input type="hidden" name="id" th:value="${i.id}">
+        <button type="submit">삭제</button>
+    </form>
+</div>
+<a href="/board/create">
+    <button>게시글 작성</button>
+</a>
+</body>
+</html>

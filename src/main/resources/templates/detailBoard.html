@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Board Detail</title>
+</head>
+<body>
+<h1>게시글 상세</h1>
+<div>
+    <h2 th:text="${board.title}">Title</h2>
+    <p><strong>작성일:</strong> <span th:text="${board.date}">Date</span></p>
+    <p><strong>내용:</strong></p>
+    <p th:text="${board.content}">Content</p>
+</div>
+<a href="/board">
+    <button>목록으로</button>
+</a>
+</body>
+</html>
